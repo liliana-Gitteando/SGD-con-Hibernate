@@ -4,6 +4,7 @@ import com.myweb.mavenproject1.entidades.Documento;
 import com.myweb.mavenproject1.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import java.util.List;
 
 /**
  * Clase DAO para operaciones CRUD de Documento
@@ -30,4 +31,24 @@ public class DocumentoDAO {
             session.close();
         }
     }
+     /**
+     * Método para listar todos los documentos
+     */
+    public List<Documento> listar() {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        List<Documento> lista = null;
+
+        try {
+            lista = session.createQuery("FROM Documento", Documento.class).list();
+        } catch (Exception e) {
+            System.out.println("Error al listar documentos");
+            e.printStackTrace();
+        } finally {
+            session.close();
+    }
+
+    return lista;
+  }
 }
+
