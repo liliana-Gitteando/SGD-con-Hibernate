@@ -17,7 +17,7 @@
     <property name="show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
 
-    <mapping class="com.myweb.mavenproject1.entidades.documento"/>
+    <mapping class="com.myweb.mavenproject1.entidades.Documento"/>
     
   </session-factory>
  </hibernate-configuration>

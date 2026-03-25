@@ -12,7 +12,7 @@ import java.util.List;
 public class DocumentoDAO {
 
     /**
-     * Método para guardar un documento en la base de datos
+     * Guardar
      */
     public void guardar(Documento documento) {
 
@@ -32,7 +32,7 @@ public class DocumentoDAO {
         }
     }
      /**
-     * Método para listar todos los documentos
+     *  Listar 
      */
     public List<Documento> listar() {
 
@@ -48,7 +48,26 @@ public class DocumentoDAO {
             session.close();
     }
 
-    return lista;
-  }
+     return lista;
+    }
+
+    //  ACTUALIZAR
+    public void actualizar(Documento documento) {
+
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        try {
+            session.update(documento);
+            tx.commit();
+            System.out.println("Documento actualizado correctamente");
+        } catch (Exception e) {
+            tx.rollback();
+            System.out.println("Error al actualizar documento");
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 }
 
