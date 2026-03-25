@@ -6,14 +6,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        System.out.println("Intentando conectar...");
 
-        if (session != null) {
-            System.out.println("Conexión exitosa");
-        } else {
-            System.out.println("Error de conexión");
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            System.out.println("Conexión exitosa a la BD");
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Error de conexión:");
+            e.printStackTrace();
         }
-
-        session.close();
     }
 }
