@@ -1,5 +1,6 @@
-com\myweb\mavenproject1\HibernateUtil.class
+com\myweb\mavenproject1\dao\LoginUsuarioDAO.class
 com\myweb\mavenproject1\dao\DocumentoDAO.class
 com\myweb\mavenproject1\entidades\Documento.class
+com\myweb\mavenproject1\HibernateUtil.class
 com\myweb\mavenproject1\entidades\LoginUsuario.class
 com\myweb\mavenproject1\Main.class

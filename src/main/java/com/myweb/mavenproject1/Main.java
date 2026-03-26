@@ -78,9 +78,19 @@ package com.myweb.mavenproject1;
 
                 System.out.println("Usuario actualizado correctamente");
                 break;
+            }   
+        }
+        
+        // ELIMINAR USUARIOS
+
+        for (LoginUsuario u : usuarios) {
+            if (u.getId() == 9 || u.getId() == 10 || u.getId() == 11) {
+                daoUsuario.eliminar(u.getId());
+                System.out.println("Usuario eliminado correctamente ID: " + u.getId());
+                
             }
         }
 
     } 
 
-} 
+}

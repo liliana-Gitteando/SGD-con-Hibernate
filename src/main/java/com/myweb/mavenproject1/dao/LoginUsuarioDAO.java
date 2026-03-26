@@ -47,4 +47,22 @@ public class LoginUsuarioDAO {
             session.close();
         }
     }
+    public void eliminar(int id) {
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    Transaction tx = session.beginTransaction();
+
+        try {
+            LoginUsuario usuario = session.get(LoginUsuario.class, id);
+            if (usuario != null) {
+            session.delete(usuario);
+        }
+            tx.commit();
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+      }
+    }
 }
+            
