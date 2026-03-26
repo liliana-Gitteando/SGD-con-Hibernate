@@ -30,5 +30,21 @@ public class LoginUsuarioDAO {
         List<LoginUsuario> lista = session.createQuery("FROM LoginUsuario", LoginUsuario.class).list();
         session.close();
         return lista;
+        }
+        
+    public void actualizar(LoginUsuario usuario) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = session.beginTransaction();
+
+        try {
+            session.update(usuario);
+            tx.commit();
+            System.out.println("Usuario actualizado");
+        } catch (Exception e) {
+            tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 }
