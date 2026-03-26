@@ -19,6 +19,7 @@
 
     <mapping class="com.myweb.mavenproject1.entidades.Documento"/>
     <mapping class="com.myweb.mavenproject1.entidades.LoginUsuario"/>
+    <mapping class="com.myweb.mavenproject1.entidades.Reporte"/>
 
         
   </session-factory>

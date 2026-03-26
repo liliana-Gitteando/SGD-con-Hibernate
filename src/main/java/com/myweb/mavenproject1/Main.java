@@ -4,7 +4,8 @@ package com.myweb.mavenproject1;
     import com.myweb.mavenproject1.dao.LoginUsuarioDAO;
     import com.myweb.mavenproject1.entidades.Documento;
     import com.myweb.mavenproject1.entidades.LoginUsuario;
-
+    import com.myweb.mavenproject1.dao.ReporteDAO;
+    import com.myweb.mavenproject1.entidades.Reporte;
     import java.util.Date;
     import java.util.List;
 
@@ -90,7 +91,65 @@ package com.myweb.mavenproject1;
                 
             }
         }
-
-    } 
-
+        //  REPORTES
+        
+        System.out.println("\n\n=== PRUEBAS DE REPORTES ===");
+        
+        ReporteDAO daoReporte = new ReporteDAO();
+        
+        // Listar todos los reportes
+        System.out.println("\n--- Listando Reportes ---");
+        List<Reporte> reportes = daoReporte.listar();
+        
+        if (reportes != null) {
+            System.out.println("Total de reportes: " + reportes.size());
+            for (Reporte rep : reportes) {
+                System.out.println("ID: " + rep.getId() + 
+                                 " | Tipo: " + rep.getTipoReporte() + 
+                                 " | Usuario: " + rep.getUsuarioId() +
+                                 " | Descripción: " + rep.getDescripcion());
+            }
+        } else {
+            System.out.println("Error al listar reportes");
+        }
+        
+        // Obtener un reporte específico
+        System.out.println("\n--- Obteniendo Reporte por ID ---");
+        Reporte reporteUnico = daoReporte.obtenerPorId(1);
+        if (reporteUnico != null) {
+            System.out.println("Reporte encontrado:");
+            System.out.println("  ID: " + reporteUnico.getId());
+            System.out.println("  Tipo: " + reporteUnico.getTipoReporte());
+            System.out.println("  Descripción: " + reporteUnico.getDescripcion());
+            System.out.println("  Formato: " + reporteUnico.getFormato());
+            System.out.println("  Ruta: " + reporteUnico.getRutaArchivo());
+        } else {
+            System.out.println("Reporte no encontrado");
+        }
+        
+        // Crear un nuevo reporte
+        System.out.println("\n--- Creando Nuevo Reporte ---");
+        Reporte nuevoReporte = new Reporte();
+        nuevoReporte.setUsuarioId(2);
+        nuevoReporte.setTipoReporte("Reporte de Prueba");
+        nuevoReporte.setDescripcion("Este es un reporte de prueba creado desde NetBeans");
+        nuevoReporte.setFechaGeneracion(new Date());
+        nuevoReporte.setFormato("PDF");
+        nuevoReporte.setRutaArchivo("/reportes/prueba_netbeans.pdf");
+        
+        daoReporte.guardar(nuevoReporte);
+        System.out.println("Nuevo reporte guardado exitosamente");
+        
+        // Listar nuevamente para ver el nuevo reporte
+        System.out.println("\n--- Listando Reportes Nuevamente ---");
+        List<Reporte> reportesActualizados = daoReporte.listar();
+        if (reportesActualizados != null) {
+            System.out.println("Total de reportes ahora: " + reportesActualizados.size());
+            for (Reporte rep : reportesActualizados) {
+                System.out.println("  ID: " + rep.getId() + " | Tipo: " + rep.getTipoReporte());
+            }
+        }
+        
+        System.out.println("\n=== FIN DE PRUEBAS ===\n");
+    }    
 }

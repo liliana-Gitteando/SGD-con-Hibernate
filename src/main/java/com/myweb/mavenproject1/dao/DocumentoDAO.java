@@ -1,7 +1,7 @@
 package com.myweb.mavenproject1.dao;
 
 import com.myweb.mavenproject1.entidades.Documento;
-import com.myweb.mavenproject1.HibernateUtil;
+import com.myweb.mavenproject1.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import java.util.List;

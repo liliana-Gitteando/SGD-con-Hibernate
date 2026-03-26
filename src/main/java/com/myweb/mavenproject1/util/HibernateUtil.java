@@ -1,4 +1,4 @@
-package com.myweb.mavenproject1;
+package com.myweb.mavenproject1.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -13,7 +13,7 @@ public class HibernateUtil {
                     .configure("hibernate.cfg.xml")
                     .buildSessionFactory();
         } catch (Throwable ex) {
-            System.err.println("Error: " + ex);
+            System.err.println("Error creando SessionFactory: " + ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
