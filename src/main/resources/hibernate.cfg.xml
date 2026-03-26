@@ -18,6 +18,8 @@
     <property name="hibernate.hbm2ddl.auto">update</property>
 
     <mapping class="com.myweb.mavenproject1.entidades.Documento"/>
-    
+    <mapping class="com.myweb.mavenproject1.entidades.LoginUsuario"/>
+
+        
   </session-factory>
  </hibernate-configuration>
