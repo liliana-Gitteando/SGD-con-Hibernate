@@ -3,6 +3,9 @@ package com.myweb.mavenproject1.entidades;
 import java.util.Date;
 import javax.persistence.*;
 
+/**
+ * Entidad que representa la tabla Login_usuarios
+ */
 @Entity
 @Table(name = "reportes")
 public class Reporte {
@@ -28,6 +31,8 @@ public class Reporte {
     @Column(name = "ruta_archivo")
     private String rutaArchivo;
 
+    // Getters y Setters
+    
     public int getId() {
         return id;
     }

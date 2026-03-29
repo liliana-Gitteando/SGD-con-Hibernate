@@ -15,7 +15,8 @@ public class ReporteDAO {
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
-            session.save(r);
+   
+            
             tx.commit();
             System.out.println("Reporte guardado exitosamente");
         } catch (Exception ex) {
@@ -116,4 +117,3 @@ public class ReporteDAO {
         }
     }
 }
-

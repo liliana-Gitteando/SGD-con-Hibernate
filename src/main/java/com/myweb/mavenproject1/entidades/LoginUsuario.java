@@ -2,6 +2,9 @@ package com.myweb.mavenproject1.entidades;
 
 import javax.persistence.*;
 
+/**
+ * Entidad que representa la tabla Login_usuarios
+ */
 @Entity
 @Table(name = "login_usuarios")
 public class LoginUsuario {
@@ -19,7 +22,7 @@ public class LoginUsuario {
     @Column(name = "rol")
     private String rol;
 
-    // 🔹 Getters y Setters
+    // Getters y Setters
 
     public int getId() {
         return id;

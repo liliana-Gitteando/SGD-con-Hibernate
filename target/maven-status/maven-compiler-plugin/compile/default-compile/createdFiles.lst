@@ -3,6 +3,8 @@ com\myweb\mavenproject1\dao\LoginUsuarioDAO.class
 com\myweb\mavenproject1\dao\DocumentoDAO.class
 com\myweb\mavenproject1\entidades\Documento.class
 com\myweb\mavenproject1\entidades\Reporte.class
+com\myweb\mavenproject1\entidades\Alertas.class
+com\myweb\mavenproject1\dao\AlertasDAO.class
 com\myweb\mavenproject1\util\HibernateUtil.class
 com\myweb\mavenproject1\entidades\LoginUsuario.class
 com\myweb\mavenproject1\Main.class

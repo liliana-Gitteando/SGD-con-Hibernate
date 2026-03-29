@@ -6,6 +6,8 @@ package com.myweb.mavenproject1;
     import com.myweb.mavenproject1.entidades.LoginUsuario;
     import com.myweb.mavenproject1.dao.ReporteDAO;
     import com.myweb.mavenproject1.entidades.Reporte;
+    import com.myweb.mavenproject1.dao.AlertasDAO;
+    import com.myweb.mavenproject1.entidades.Alertas;
     import java.util.Date;
     import java.util.List;
 
@@ -93,11 +95,12 @@ package com.myweb.mavenproject1;
         }
         //  REPORTES
         
-        System.out.println("\n\n=== PRUEBAS DE REPORTES ===");
+        System.out.println("\n\n PRUEBAS DE REPORTES");
         
         ReporteDAO daoReporte = new ReporteDAO();
         
-        // Listar todos los reportes
+        // LISTAR TODOS LOS REPORTES
+        
         System.out.println("\n--- Listando Reportes ---");
         List<Reporte> reportes = daoReporte.listar();
         
@@ -113,7 +116,8 @@ package com.myweb.mavenproject1;
             System.out.println("Error al listar reportes");
         }
         
-        // Obtener un reporte específico
+        // OBTENER UN REPORTE ESPECIFICO
+        
         System.out.println("\n--- Obteniendo Reporte por ID ---");
         Reporte reporteUnico = daoReporte.obtenerPorId(1);
         if (reporteUnico != null) {
@@ -127,8 +131,9 @@ package com.myweb.mavenproject1;
             System.out.println("Reporte no encontrado");
         }
         
-        // Crear un nuevo reporte
-        System.out.println("\n--- Creando Nuevo Reporte ---");
+        // CREAR UN NUEVO REPORTE
+        
+        System.out.println("\n Creando Nuevo Reporte");
         Reporte nuevoReporte = new Reporte();
         nuevoReporte.setUsuarioId(2);
         nuevoReporte.setTipoReporte("Reporte de Prueba");
@@ -140,16 +145,65 @@ package com.myweb.mavenproject1;
         daoReporte.guardar(nuevoReporte);
         System.out.println("Nuevo reporte guardado exitosamente");
         
-        // Listar nuevamente para ver el nuevo reporte
-        System.out.println("\n--- Listando Reportes Nuevamente ---");
+        // LISTAR NUEVAMENTE PARA VER EL NUEVO REPORTE
+
+        System.out.println("\n Listando Reportes Nuevamente");
         List<Reporte> reportesActualizados = daoReporte.listar();
+
         if (reportesActualizados != null) {
             System.out.println("Total de reportes ahora: " + reportesActualizados.size());
-            for (Reporte rep : reportesActualizados) {
-                System.out.println("  ID: " + rep.getId() + " | Tipo: " + rep.getTipoReporte());
-            }
-        }
-        
-        System.out.println("\n=== FIN DE PRUEBAS ===\n");
-    }    
+        for (Reporte rep : reportesActualizados) {
+        System.out.println("  ID: " + rep.getId() + " | Tipo: " + rep.getTipoReporte());
+    }
+}
+
+        // ALERTAS
+
+        System.out.println("\n--- LISTANDO ALERTAS ---");
+
+        AlertasDAO daoAlertas = new AlertasDAO();
+        List<Alertas> alertas = daoAlertas.listarAlertas();
+
+        System.out.println("Total de alertas: " + alertas.size());
+
+        for (Alertas a : alertas) {
+            System.out.println("ID: " + a.getId());
+            System.out.println("Descripción: " + a.getDescripcion());
+            System.out.println("Estado: " + a.getEstado());
+            System.out.println("------------------------");
+}
+
+        // CREAR ALERTA DE PRUEBA
+
+        System.out.println("\n--- CREANDO ALERTA DE PRUEBA ---");
+
+            Alertas nueva = new Alertas();
+            nueva.setDocumentoId(1L);
+            nueva.setUsuarioId(1L);
+            nueva.setTipoAlerta("VENCIMIENTO");
+            nueva.setDescripcion("Documento próximo a vencer");
+            nueva.setEstado("PENDIENTE");
+            nueva.setFechaCreacion(new Date());
+            nueva.setFechaNotificacion(new Date());
+
+            daoAlertas.saveAlerta(nueva);
+
+            System.out.println("Alerta guardada correctamente");
+
+        // VOLVER A LISTAR ALERTAS
+
+        System.out.println("\n--- LISTANDO ALERTAS NUEVAMENTE ---");
+
+        List<Alertas> alertas2 = daoAlertas.listarAlertas();
+
+        for (Alertas a : alertas2) {
+            System.out.println("ID: " + a.getId());
+            System.out.println("Descripción: " + a.getDescripcion());
+            System.out.println("Estado: " + a.getEstado());
+            System.out.println("------------------------");
+}
+
+                System.out.println("\n FIN DE PRUEBAS \n");
+ 
+    }
 }
