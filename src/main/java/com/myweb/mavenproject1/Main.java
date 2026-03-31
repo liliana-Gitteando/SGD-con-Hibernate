@@ -1,17 +1,17 @@
 package com.myweb.mavenproject1;
 
-    import com.myweb.mavenproject1.dao.DocumentoDAO;
-    import com.myweb.mavenproject1.dao.LoginUsuarioDAO;
-    import com.myweb.mavenproject1.entidades.Documento;
-    import com.myweb.mavenproject1.entidades.LoginUsuario;
-    import com.myweb.mavenproject1.dao.ReporteDAO;
-    import com.myweb.mavenproject1.entidades.Reporte;
-    import com.myweb.mavenproject1.dao.AlertasDAO;
-    import com.myweb.mavenproject1.entidades.Alertas;
-    import java.util.Date;
-    import java.util.List;
+import com.myweb.mavenproject1.dao.DocumentoDAO;
+import com.myweb.mavenproject1.dao.LoginUsuarioDAO;
+import com.myweb.mavenproject1.entidades.Documento;
+import com.myweb.mavenproject1.entidades.LoginUsuario;
+import com.myweb.mavenproject1.dao.ReporteDAO;
+import com.myweb.mavenproject1.entidades.Reporte;
+import com.myweb.mavenproject1.dao.AlertasDAO;
+import com.myweb.mavenproject1.entidades.Alertas;
+import java.util.Date;
+import java.util.List;
 
-    public class Main {
+public class Main {
 
     public static void main(String[] args) {
 
@@ -20,8 +20,8 @@ package com.myweb.mavenproject1;
         DocumentoDAO dao = new DocumentoDAO();
 
         Documento doc = new Documento();
-        doc.setNumeroRadicado("RAD-E-2026-25-00033");
-        doc.setTipoDocumento("Comuncación de Entrada");
+        
+        doc.setTipoDocumento("E"); 
         doc.setAsunto("Prueba Hibernate 2");
         doc.setRemitente("Empresa A");
         doc.setDestinatario("Empresa B");
@@ -52,13 +52,11 @@ package com.myweb.mavenproject1;
         user.setNombre("Roberto Montes");
         user.setContraseña("2327690");
         user.setRol("Funcionario2");
-      
+
         // daoUsuario.guardar(user);
 
         List<LoginUsuario> usuarios = daoUsuario.listar();
 
-        // LISTAR USUARIOS
-        
         System.out.println("LISTA USUARIOS");
 
         for (LoginUsuario u : usuarios) {
@@ -68,8 +66,6 @@ package com.myweb.mavenproject1;
             System.out.println("------------------------");
         }
 
-        // ACTUALIZAR USUARIO 
-        
         for (LoginUsuario u : usuarios) {
             if (u.getId() == 8) {
 
@@ -81,43 +77,37 @@ package com.myweb.mavenproject1;
 
                 System.out.println("Usuario actualizado correctamente");
                 break;
-            }   
+            }
         }
-        
-        // ELIMINAR USUARIOS
 
         for (LoginUsuario u : usuarios) {
             if (u.getId() == 9 || u.getId() == 10 || u.getId() == 11) {
                 daoUsuario.eliminar(u.getId());
                 System.out.println("Usuario eliminado correctamente ID: " + u.getId());
-                
             }
         }
-        //  REPORTES
-        
+
+        // REPORTES
+
         System.out.println("\n\n PRUEBAS DE REPORTES");
-        
+
         ReporteDAO daoReporte = new ReporteDAO();
-        
-        // LISTAR TODOS LOS REPORTES
-        
+
         System.out.println("\n--- Listando Reportes ---");
         List<Reporte> reportes = daoReporte.listar();
-        
+
         if (reportes != null) {
             System.out.println("Total de reportes: " + reportes.size());
             for (Reporte rep : reportes) {
-                System.out.println("ID: " + rep.getId() + 
-                                 " | Tipo: " + rep.getTipoReporte() + 
-                                 " | Usuario: " + rep.getUsuarioId() +
-                                 " | Descripción: " + rep.getDescripcion());
+                System.out.println("ID: " + rep.getId() +
+                        " | Tipo: " + rep.getTipoReporte() +
+                        " | Usuario: " + rep.getUsuarioId() +
+                        " | Descripción: " + rep.getDescripcion());
             }
         } else {
             System.out.println("Error al listar reportes");
         }
-        
-        // OBTENER UN REPORTE ESPECIFICO
-        
+
         System.out.println("\n--- Obteniendo Reporte por ID ---");
         Reporte reporteUnico = daoReporte.obtenerPorId(1);
         if (reporteUnico != null) {
@@ -130,9 +120,7 @@ package com.myweb.mavenproject1;
         } else {
             System.out.println("Reporte no encontrado");
         }
-        
-        // CREAR UN NUEVO REPORTE
-        
+
         System.out.println("\n Creando Nuevo Reporte");
         Reporte nuevoReporte = new Reporte();
         nuevoReporte.setUsuarioId(2);
@@ -141,21 +129,19 @@ package com.myweb.mavenproject1;
         nuevoReporte.setFechaGeneracion(new Date());
         nuevoReporte.setFormato("PDF");
         nuevoReporte.setRutaArchivo("/reportes/prueba_netbeans.pdf");
-        
+
         daoReporte.guardar(nuevoReporte);
         System.out.println("Nuevo reporte guardado exitosamente");
-        
-        // LISTAR NUEVAMENTE PARA VER EL NUEVO REPORTE
 
         System.out.println("\n Listando Reportes Nuevamente");
         List<Reporte> reportesActualizados = daoReporte.listar();
 
         if (reportesActualizados != null) {
             System.out.println("Total de reportes ahora: " + reportesActualizados.size());
-        for (Reporte rep : reportesActualizados) {
-        System.out.println("  ID: " + rep.getId() + " | Tipo: " + rep.getTipoReporte());
-    }
-}
+            for (Reporte rep : reportesActualizados) {
+                System.out.println("  ID: " + rep.getId() + " | Tipo: " + rep.getTipoReporte());
+            }
+        }
 
         // ALERTAS
 
@@ -171,26 +157,22 @@ package com.myweb.mavenproject1;
             System.out.println("Descripción: " + a.getDescripcion());
             System.out.println("Estado: " + a.getEstado());
             System.out.println("------------------------");
-}
-
-        // CREAR ALERTA DE PRUEBA
+        }
 
         System.out.println("\n--- CREANDO ALERTA DE PRUEBA ---");
 
-            Alertas nueva = new Alertas();
-            nueva.setDocumentoId(1L);
-            nueva.setUsuarioId(1L);
-            nueva.setTipoAlerta("VENCIMIENTO");
-            nueva.setDescripcion("Documento próximo a vencer");
-            nueva.setEstado("PENDIENTE");
-            nueva.setFechaCreacion(new Date());
-            nueva.setFechaNotificacion(new Date());
+        Alertas nueva = new Alertas();
+        nueva.setDocumentoId(1L);
+        nueva.setUsuarioId(1L);
+        nueva.setTipoAlerta("VENCIMIENTO");
+        nueva.setDescripcion("Documento próximo a vencer");
+        nueva.setEstado("PENDIENTE");
+        nueva.setFechaCreacion(new Date());
+        nueva.setFechaNotificacion(new Date());
 
-            daoAlertas.saveAlerta(nueva);
+        daoAlertas.saveAlerta(nueva);
 
-            System.out.println("Alerta guardada correctamente");
-
-        // VOLVER A LISTAR ALERTAS
+        System.out.println("Alerta guardada correctamente");
 
         System.out.println("\n--- LISTANDO ALERTAS NUEVAMENTE ---");
 
@@ -201,9 +183,8 @@ package com.myweb.mavenproject1;
             System.out.println("Descripción: " + a.getDescripcion());
             System.out.println("Estado: " + a.getEstado());
             System.out.println("------------------------");
-}
+        }
 
-                System.out.println("\n FIN DE PRUEBAS \n");
- 
+        System.out.println("\n FIN DE PRUEBAS \n");
     }
 }
